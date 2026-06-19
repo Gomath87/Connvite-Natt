@@ -253,7 +253,7 @@ function fugir(e) {
   digitarTexto(frasesNao[indiceFrase], msg);
   indiceFrase++;
 
-  // Faz o botão SIM crescer a cada fuga do botão NÃO
+  // Faz o botão SIM crescer 
   escalaSim += 0.15;
   btnSim.style.transform = `scale(${escalaSim})`;
 
@@ -281,7 +281,7 @@ function fugir(e) {
   const x = Math.random() * (maxX - minX) + minX;
   const y = Math.random() * (maxY - minY) + minY;
   
-  // Adiciona uma inclinação engraçada ao fugir
+  // Adiciona uma inclinação engraçada 
   const rotacaoAleatoria = Math.random() * 40 - 20;
 
   btnNao.style.left = x + "px";
@@ -296,7 +296,7 @@ function escolher(opcao) {
   if (opcao === "sushi") {
     frase = "Já vou começar o intensivão de hashis pra não passar vergonha pela terceira vez 😭";
   } else if (opcao === "cinema") {
-    frase = "Anotado: levar casaco… para não passar frio 🥶";
+    frase = "Levar casaco… para não passar frio 🥶";
   } else if (opcao === "pesqueira") {
     frase = "Perfeito… só falta a gente encontrar o cara da moto pra garantir o entretenimento 😂";
   } else if (opcao === "bichinhos") {
