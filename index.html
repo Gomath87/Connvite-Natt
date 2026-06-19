@@ -9,7 +9,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  /* Fundo animado */
   background: linear-gradient(-45deg, #667eea, #764ba2, #ff7eb3, #ff758c);
   background-size: 400% 400%;
   animation: gradientBG 12s ease infinite;
@@ -41,7 +40,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Animação de entrada estilo "pulo" */
   animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -67,7 +65,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Efeito legal ao passar o dedo/mouse nas opções */
 .opcoes button:active, .opcoes button:hover {
   background: rgba(255, 255, 255, 0.4);
   transform: translateY(-3px);
@@ -84,9 +81,10 @@ body {
 .ativa {
   display: flex;
 }
- /* Hahay 🎣🦈 Natália */
+
 button {
   border: none;
+/* Hahay 🎣🦈 Natália */
   padding: 12px 20px;
   margin: 10px 5px;
   border-radius: 10px;
@@ -109,7 +107,6 @@ button {
   background: #00ff88;
   color: #000;
   flex: 1;
-  /* Animação chamando atenção pro SIM */
   animation: pulse 1.5s infinite;
   z-index: 5;
 }
@@ -124,7 +121,6 @@ button {
   background: #ff4757;
   color: white;
   position: relative;
-  /* Adicionado rotação na transição */
   transition: left 0.3s ease, top 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
   flex: 1;
   z-index: 10;
@@ -225,7 +221,8 @@ const frasesNao = [
 ];
 
 let indiceFrase = 0;
-let escalaSim = 1; // Variável para fazer o botão SIM crescer
+let escalaSim = 1;
+let opcaoEscolhida = ""; 
 
 function digitarTexto(texto, elemento) {
   elemento.innerHTML = "";
@@ -253,7 +250,6 @@ function fugir(e) {
   digitarTexto(frasesNao[indiceFrase], msg);
   indiceFrase++;
 
-  // Faz o botão SIM crescer 
   escalaSim += 0.15;
   btnSim.style.transform = `scale(${escalaSim})`;
 
@@ -281,7 +277,6 @@ function fugir(e) {
   const x = Math.random() * (maxX - minX) + minX;
   const y = Math.random() * (maxY - minY) + minY;
   
-  // Adiciona uma inclinação engraçada 
   const rotacaoAleatoria = Math.random() * 40 - 20;
 
   btnNao.style.left = x + "px";
@@ -292,11 +287,12 @@ function fugir(e) {
 
 function escolher(opcao) {
   let frase = "";
+  opcaoEscolhida = opcao; 
 
   if (opcao === "sushi") {
     frase = "Já vou começar o intensivão de hashis pra não passar vergonha pela terceira vez 😭";
   } else if (opcao === "cinema") {
-    frase = "Levar casaco… para não passar frio 🥶";
+    frase = "Anotado: levar casaco… para não passar frio 🥶";
   } else if (opcao === "pesqueira") {
     frase = "Perfeito… só falta a gente encontrar o cara da moto pra garantir o entretenimento 😂";
   } else if (opcao === "bichinhos") {
@@ -312,6 +308,20 @@ function escolher(opcao) {
 }
 
 function abrirFinal() {
+  let tituloFinal = "";
+
+  if (opcaoEscolhida === "sushi") {
+    tituloFinal = "Marcado o sushi ein? 🍣";
+  } else if (opcaoEscolhida === "cinema") {
+    tituloFinal = "Marcado o cinema ein? 🎬";
+  } else if (opcaoEscolhida === "pesqueira") {
+    tituloFinal = "Marcado o rolê em Pesqueira ein? 🏕️";
+  } else if (opcaoEscolhida === "bichinhos") {
+    tituloFinal = "Marcado de pegar os bichinhos ein? 🐾";
+  } else {
+    tituloFinal = "Marcado! 😜";
+  }
+
   const html = `
   <!DOCTYPE html>
   <html lang="pt-BR">
@@ -359,15 +369,15 @@ function abrirFinal() {
         left: 0;
         pointer-events: none;
       }
-      h1 { font-size: 32px; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+      h1 { font-size: 26px; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
       p { font-size: 18px; margin-bottom: 0; font-weight: bold; }
     </style>
   </head>
   <body>
     <canvas id="confetti"></canvas>
     <div class="caixa">
-      <h1>Marcado! 😜</h1>
-      <p>Agora não pode mais desmarcar…</p>
+      <h1>${tituloFinal}</h1>
+      <p>Agora não pode mais desmarcar! 😜</p>
     </div>
     <script>
       const canvas = document.getElementById("confetti");
