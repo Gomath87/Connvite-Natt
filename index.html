@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* Fundo animado */
+  background: linear-gradient(-45deg, #667eea, #764ba2, #ff7eb3, #ff758c);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.caixa {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 85%;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Animação de entrada estilo "pulo" */
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.opcoes button {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Efeito legal ao passar o dedo/mouse nas opções */
+.opcoes button:active, .opcoes button:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.tela {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.ativa {
+  display: flex;
+}
+ /* Hahay 🎣🦈 Natália */
+button {
+  border: none;
+  padding: 12px 20px;
+  margin: 10px 5px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.botoes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 60px;
+}
+
+.sim {
+  background: #00ff88;
+  color: #000;
+  flex: 1;
+  /* Animação chamando atenção pro SIM */
+  animation: pulse 1.5s infinite;
+  z-index: 5;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(0, 255, 136, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+}
+
+.nao {
+  background: #ff4757;
+  color: white;
+  position: relative;
+  /* Adicionado rotação na transição */
+  transition: left 0.3s ease, top 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  flex: 1;
+  z-index: 10;
+}
+
+.btn-continuar {
+  background: white;
+  color: #764ba2;
+  width: 100%;
+  margin-top: 20px;
+  transition: transform 0.2s;
+}
+
+.btn-continuar:active {
+  transform: scale(0.95);
+}
+
+#mensagemNao {
+  margin-top: 15px;
+  min-height: 50px;
+  font-size: 15px;
+  color: #ffeaa7;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+p {
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="tela ativa" id="telaIntro">
+  <div class="caixa">
+    <h1>Tenho uma pergunta pra te fazer...</h1>
+    <button class="btn-continuar" onclick="irParaTela1()">Continuar</button>
+  </div>
+</div>
+
+<div class="tela" id="tela1">
+  <div class="caixa" id="caixaPrincipal">
+    <h1>Topa uma missão comigo Natália? 👀</h1>
+    <p id="mensagemNao"></p>
+
+    <div class="botoes-container" id="botoesAcao">
+      <button class="sim" id="sim" onclick="irParaTela2()">Sim 😄</button>
+      <button class="nao" id="nao" onclick="fugir(event)">Não 😅</button>
+    </div>
+  </div>
+</div>
+
+<div class="tela" id="tela2">
+  <div class="caixa">
+    <h1>Sabia que iria escolher "SIM" 🤣</h1>
+    <p>Agora vem a melhor parte...</p>
+
+    <div class="opcoes">
+      <button onclick="escolher('sushi')">🍣 Sushi</button>
+      <button onclick="escolher('cinema')">🎬 Cinema</button>
+      <button onclick="escolher('pesqueira')">🏕️ Pesqueira</button>
+      <button onclick="escolher('bichinhos')">🐶 Bichinhos</button>
+    </div>
+  </div>
+</div>
+
+<div class="tela" id="telaResposta">
+  <div class="caixa">
+    <h1>Boa escolha!</h1>
+    <p id="respostaPasseio" style="min-height: 60px; font-size: 18px; margin: 20px 0; color: #00ff88; font-weight: bold;"></p>
+    <button class="btn-continuar" onclick="abrirFinal()">Continuar ⏰</button>
+  </div>
+</div>
+
+<script>
+function irParaTela1() {
+  document.getElementById("telaIntro").classList.remove("ativa");
+  document.getElementById("tela1").classList.add("ativa");
+}
+
+function irParaTela2() {
+  document.getElementById("tela1").classList.remove("ativa");
+  document.getElementById("tela2").classList.add("ativa");
+}
+
+const frasesNao = [
+  "Ei ei ei… calma aí 🤨 tenta de novo",
+  "Tem certeza? 👀 vou fingir que não vi",
+  "Esse botão tá bugado… tenta de novo 😅",
+  "Negativo não aceito… sistema não permite ❌",
+  "Vai… clica no sim. Eu sei que você quer 😏",
+  "O botão ‘não’ tava aí só pra teste 👀"
+];
+
+let indiceFrase = 0;
+let escalaSim = 1; // Variável para fazer o botão SIM crescer
+
+function digitarTexto(texto, elemento) {
+  elemento.innerHTML = "";
+  let i = 0;
+  const intervalo = setInterval(() => {
+    elemento.innerHTML += texto.charAt(i);
+    i++;
+    if (i >= texto.length) clearInterval(intervalo);
+  }, 30);
+}
+
+function fugir(e) {
+  e.preventDefault();
+  const btnNao = document.getElementById("nao");
+  const btnSim = document.getElementById("sim");
+  const caixa = document.getElementById("caixaPrincipal");
+  
+  if (btnNao.style.position !== "fixed") {
+    btnNao.style.position = "fixed";
+    document.body.appendChild(btnNao);
+  }
+  
+  const msg = document.getElementById("mensagemNao");
+
+  digitarTexto(frasesNao[indiceFrase], msg);
+  indiceFrase++;
+
+  // Faz o botão SIM crescer a cada fuga do botão NÃO
+  escalaSim += 0.15;
+  btnSim.style.transform = `scale(${escalaSim})`;
+
+  if (indiceFrase >= frasesNao.length) {
+    btnNao.style.opacity = "0";
+    btnNao.style.pointerEvents = "none";
+    msg.innerHTML = "Ok… agora só sobrou uma opção 🤣";
+    return;
+  }
+
+  const caixaRect = caixa.getBoundingClientRect();
+  const btnWidth = btnNao.offsetWidth;
+  const btnHeight = btnNao.offsetHeight;
+
+  let minY = caixaRect.bottom + 15; 
+  let maxY = window.innerHeight - btnHeight - 15;
+
+  if (minY >= maxY) {
+    minY = window.innerHeight * 0.7;
+  }
+
+  const maxX = window.innerWidth - btnWidth - 15;
+  const minX = 15;
+
+  const x = Math.random() * (maxX - minX) + minX;
+  const y = Math.random() * (maxY - minY) + minY;
+  
+  // Adiciona uma inclinação engraçada ao fugir
+  const rotacaoAleatoria = Math.random() * 40 - 20;
+
+  btnNao.style.left = x + "px";
+  btnNao.style.top = y + "px";
+  btnNao.style.transform = `rotate(${rotacaoAleatoria}deg)`;
+  btnNao.style.margin = "0"; 
+}
+
+function escolher(opcao) {
+  let frase = "";
+
+  if (opcao === "sushi") {
+    frase = "Já vou começar o intensivão de hashis pra não passar vergonha pela terceira vez 😭";
+  } else if (opcao === "cinema") {
+    frase = "Anotado: levar casaco… para não passar frio 🥶";
+  } else if (opcao === "pesqueira") {
+    frase = "Perfeito… só falta a gente encontrar o cara da moto pra garantir o entretenimento 😂";
+  } else if (opcao === "bichinhos") {
+    frase = "Lembrando que está 2x1 pra você 😔🐾 mas eu tô na cola 😏";
+  }
+
+  document.getElementById("tela2").classList.remove("ativa");
+  document.getElementById("telaResposta").classList.add("ativa");
+
+  setTimeout(() => {
+    digitarTexto(frase, document.getElementById("respostaPasseio"));
+  }, 100);
+}
+
+function abrirFinal() {
+  const html = `
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <title>Confirmado 😏</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #ff7eb3, #ff758c, #ff9a9e, #fecfef);
+        background-size: 400% 400%;
+        animation: gradientBG 8s ease infinite;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+      }
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .caixa {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      @keyframes popIn {
+        0% { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+        100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+      h1 { font-size: 32px; margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+      p { font-size: 18px; margin-bottom: 0; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <canvas id="confetti"></canvas>
+    <div class="caixa">
+      <h1>Marcado! 😜</h1>
+      <p>Agora não pode mais desmarcar…</p>
+    </div>
+    <script>
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      const confetes = [];
+      for (let i = 0; i < 150; i++) {
+        confetes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 6 + 3,
+          d: Math.random() * 50,
+          color: "hsl(" + Math.random() * 360 + ", 100%, 60%)",
+          tilt: Math.random() * 10
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetes.forEach(c => {
+          ctx.beginPath();
+          ctx.lineWidth = c.r;
+          ctx.strokeStyle = c.color;
+          ctx.moveTo(c.x + c.tilt + c.r, c.y);
+          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+          ctx.stroke();
+          
+          c.y += 2 + Math.random() * 2;
+          c.x += Math.sin(c.d);
+          c.tilt += 0.1;
+
+          if (c.y > canvas.height) {
+            c.y = -10;
+            c.x = Math.random() * canvas.width;
+          }
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    <\/script>
+  </body>
+  </html>
+  `;
+
+  document.open();
+  document.write(html);
+  document.close();
+}
+</script>
+
+</body>
+</html>
