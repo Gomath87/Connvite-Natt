@@ -201,7 +201,7 @@ p {
 </div>
 
 <script>
-// ⚠️ COLE SEU LINK DO DISCORD AQUI APENAS UMA VEZ ENTRE AS ASPAS:
+
 const WEBHOOK_DISCORD = "https://discord.com/api/webhooks/1517612066138226818/Rpq0AC95-wII9cwD6qIDV3bpVXn1ZlISNWx5m9dk94oqZlONCysLa3VrQbU3WpxS67Cu";
 
 // Função para enviar os alertas para o Discord
@@ -215,7 +215,7 @@ function notificarDiscord(mensagem) {
   }).catch(erro => console.error("Erro no rastreio:", erro));
 }
 
-// 🕵️‍♂️ RASTREIO 1: Abertura e Retorno
+// RASTREIO 1: Abertura e Retorno
 window.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem('ja_abriu_convite')) {
     localStorage.setItem('ja_abriu_convite', 'true');
@@ -282,7 +282,7 @@ function fugir(e) {
     indiceFrase++;
   }
 
-  // 🕵️‍♂️ RASTREIO 2: Tentativas de clicar em Não
+  // RASTREIO 2: Tentativas de clicar em Não
   notificarDiscord(`😏 **Resistência!** Natália tentou clicar em NÃO pela ${indiceFrase}ª vez.`);
 
   escalaSim += 0.15;
@@ -349,7 +349,7 @@ function escolher(opcao) {
 }
 
 function abrirFinal() {
-  // 🕵️‍♂️ RASTREIO FINAL: Missão Concluída
+  // RASTREIO FINAL: Missão Concluída
   notificarDiscord("🎊 **Missão Concluída!** Ela chegou na tela final dos confetes! Bom passeio Matheus! 🚀");
 
   let tituloFinal = "";
