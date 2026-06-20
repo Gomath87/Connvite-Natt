@@ -84,7 +84,7 @@ body {
 
 button {
   border: none;
-  /* Hahay 🎣🦈 Natália */
+  /* Hahay 🦈🎣 Natália */
   padding: 12px 20px;
   margin: 10px 5px;
   border-radius: 10px;
@@ -93,7 +93,7 @@ button {
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.3s ease, background 0.3s ease;
 }
-
+/*te amo*/
 .botoes-container {
   display: flex;
   justify-content: center;
@@ -207,7 +207,7 @@ const WEBHOOK_DISCORD = "https://discord.com/api/webhooks/1517612066138226818/Rp
 // Função para enviar os alertas para o Discord
 function notificarDiscord(mensagem) {
   if (!WEBHOOK_DISCORD || WEBHOOK_DISCORD === "") return;
-  
+
   fetch(WEBHOOK_DISCORD, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -234,7 +234,7 @@ function irParaTela2() {
   document.getElementById("tela1").classList.remove("ativa");
   document.getElementById("tela2").classList.add("ativa");
   document.getElementById("nao").style.display = "none";
-  
+
   // 🕵️‍♂️ RASTREIO: Avisa que ela clicou no SIM
   notificarDiscord("✅ **AEEEE!** Natália clicou no SIM! 🎉");
 }
@@ -245,8 +245,7 @@ const frasesNao = [
   "Esse botão tá bugado… tenta de novo 😅",
   "Negativo não aceito… sistema não permite ❌",
   "Vai… clica no sim. Eu sei que você quer 😏",
-  "O botão ‘não’ tava aí só pra teste 👀",
-  "Largue se der teimosa"
+  "O botão ‘não’ tava aí só pra teste 👀"
 ];
 
 let indiceFrase = 0;
@@ -326,10 +325,10 @@ function fugir(e) {
 function escolher(opcao) {
   let frase = "";
   opcaoEscolhida = opcao; 
-  
+
   // 🕵️‍♂️ RASTREIO 3: Opção escolhida
   notificarDiscord(`🎯 **Missão Atualizada!** Natália escolheu a opção: **${opcao.toUpperCase()}** 🥳`);
-  
+
   if (opcao === "sushi") {
     frase = "Já vou começar o intensivão de hashis pra não passar vergonha pela terceira vez 😭";
   } else if (opcao === "cinema") {
